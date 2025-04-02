@@ -13,6 +13,9 @@ services:
       - ./node/.env
     volumes:
       - ./node:/app
+    networks:
+      - backend
+      - db-net
 
   nginx:
     image: nginx:latest
@@ -20,6 +23,8 @@ services:
       - "8080:80"
     volumes:
       - ./nginx-html:/usr/share/nginx/html
+    networks:
+      - frontend
   mongo:
     image: mongo:latest
     healthcheck:
@@ -30,6 +35,13 @@ services:
       timeout: 5s
     volumes:
       - mongo_data:/data/db
+    networks:
+      - db-net
 
 volumes:
   mongo_data:
+
+networks:
+  db-net:
+  backend:
+  frontend:
