@@ -8,7 +8,7 @@ services:
       mongo:
         condition: service_healthy
     environment:
-      - SECRET=123456
+      - SECRET_1=123456
     env_file:
       - ./node/.env
     volumes:
